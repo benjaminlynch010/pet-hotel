@@ -19,7 +19,7 @@ namespace pet_hotel.Controllers
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
         [HttpGet]
-        public IEnumerable<PetOwner> GetPets() {
+        public IEnumerable<PetOwner> GetPetOwners() {
             return _context.PetOwners;
         }
 
@@ -54,5 +54,24 @@ namespace pet_hotel.Controllers
 
                 return newPetOwner;
         }
+
+        [HttpDelete("{id}")] // How a route param is added in .NET
+        public ActionResult<PetOwner> DeleteById(int id)
+        {
+            // similar to "SELECT * FROM bakers WHERE id=$1"
+            PetOwner DeletePetOwner = _context.PetOwners
+                .SingleOrDefault(PetOwner => PetOwner.id == id);
+
+            // We didn't find the baker we were looking for, SEND ERROR!
+            if (DeletePetOwner is null)
+            {
+                return NotFound();
+            }
+            // We did find the baker we are looking for, let's send that
+            // as the response:
+            return DeletePetOwner;
+        }
+
+        
     }
 }
