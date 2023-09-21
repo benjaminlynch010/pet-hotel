@@ -58,7 +58,7 @@ namespace pet_hotel.Controllers
         [HttpPut("{id}")]
         public PetOwner Put(int id, PetOwner petOwner)
         {
-          petOwner.Id = id;
+          petOwner.id = id;
 
           _context.Update(petOwner);
 
