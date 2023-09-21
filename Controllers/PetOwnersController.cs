@@ -55,6 +55,17 @@ namespace pet_hotel.Controllers
                 return newPetOwner;
         }
 
+        public PetOwner Put(int id, PetOwner petOwner)
+        {
+          petOwner.Id = id;
+
+          _context.Update(petOwner);
+
+          _context.SaveChanges();
+
+          return petOwner;
+        }
+
         [HttpDelete("{id}")] // How a route param is added in .NET
         public void DeleteById(int id)
         {
