@@ -26,16 +26,24 @@ namespace pet_hotel.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("BreedType")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CheckedInAt")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("ColorType")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OwnedById")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PetName")
                         .HasColumnType("text");
 
-                    b.Property<int>("PetOwnerid")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnedById");
 
                     b.ToTable("Pets");
                 });
@@ -60,6 +68,17 @@ namespace pet_hotel.Migrations
                     b.HasKey("id");
 
                     b.ToTable("PetOwners");
+                });
+
+            modelBuilder.Entity("pet_hotel.Pet", b =>
+                {
+                    b.HasOne("pet_hotel.PetOwner", "OwnedBy")
+                        .WithMany()
+                        .HasForeignKey("OwnedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OwnedBy");
                 });
 #pragma warning restore 612, 618
         }
