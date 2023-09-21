@@ -2,18 +2,56 @@ using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Net.Http.Headers;
 
 namespace pet_hotel
 {
-    public class Pet
+  // enum = list of const values
+  public enum PetBreedType 
   {
-      public int Id { get; set; }
-      public string PetName { get; set; }
-      public enum PetBreedType { Shepherd, Poodle, Beagle, Bulldog,Terrier, Boxer, Labrador, Retriever }
-      public enum PetColorType { White, Black, Golden, Tricolor, Spotted }
-      public DateTime CheckedInAt { get; set; }
-      public int PetOwnerid { get; set; }
+    Husky, 
+    Shepherd, 
+    Poodle, 
+    Beagle, 
+    Bulldog, 
+    Terrier, 
+    Boxer, 
+    Labrador, 
+    Retriever 
+  }
+  public enum PetColorType 
+  { 
+    White, 
+    Black, 
+    Golden, 
+    Tricolor, 
+    Spotted 
+  }
 
+  
+  public class Pet
+  {
+    // EF knows this is primary serial key
+    public int Id { get; set; }
+    public string PetName { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public PetBreedType BreedType { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public PetColorType ColorType { get; set; }
+
+    [ForeignKey("OwnedBy")]
+    public int OwnedById { get; set; }
+    // PetOwner obj from the DB ( using joins )
+    public PetOwner OwnedBy { get; set; }
+    public DateTime CheckedInAt { get; set; }
+
+    // whenever new pet instance is created this constructor will get the current date & time
+    public Pet()
+    {
+      CheckedInAt = DateTime.Now;
+    }
   }
 }
 
