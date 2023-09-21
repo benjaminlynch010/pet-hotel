@@ -26,5 +26,6 @@ namespace pet_hotel.Models
         public DbSet<PetOwner> PetOwners {get;set;}
         //             👆       👆
         //           class    table
+        public DbSet<Pet> Pets { get; set; }
     }
 }
