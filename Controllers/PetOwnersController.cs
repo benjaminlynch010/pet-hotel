@@ -56,20 +56,14 @@ namespace pet_hotel.Controllers
         }
 
         [HttpDelete("{id}")] // How a route param is added in .NET
-        public ActionResult<PetOwner> DeleteById(int id)
+        public void DeleteById(int id)
         {
             // similar to "SELECT * FROM bakers WHERE id=$1"
-            PetOwner DeletePetOwner = _context.PetOwners
-                .SingleOrDefault(PetOwner => PetOwner.id == id);
+            PetOwner petOwner = _context.PetOwners.Find(id);
 
-            // We didn't find the baker we were looking for, SEND ERROR!
-            if (DeletePetOwner is null)
-            {
-                return NotFound();
-            }
-            // We did find the baker we are looking for, let's send that
-            // as the response:
-            return DeletePetOwner;
+            _context.PetOwners.Remove(petOwner);
+
+            _context.SaveChanges();
         }
 
         
