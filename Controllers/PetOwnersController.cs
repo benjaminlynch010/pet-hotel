@@ -55,6 +55,7 @@ namespace pet_hotel.Controllers
                 return newPetOwner;
         }
 
+        [HttpPut("{id}")]
         public PetOwner Put(int id, PetOwner petOwner)
         {
           petOwner.Id = id;
