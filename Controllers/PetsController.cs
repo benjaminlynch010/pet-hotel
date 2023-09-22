@@ -32,7 +32,7 @@ namespace pet_hotel.Controllers
         public ActionResult<Pet> GetById(int id)
         {
           Pet pet = _context.Pets
-          .SingleOrDefault(Pet => Pet.Id == id);
+          .SingleOrDefault(Pet => Pet.id == id);
 
           if (pet is null) {
             return NotFound();
@@ -54,7 +54,7 @@ namespace pet_hotel.Controllers
         [HttpPut("{id}")]
         public Pet Put(int id, Pet pet)
         {
-          pet.Id = id;
+          pet.id = id;
 
           _context.Update(pet);
 

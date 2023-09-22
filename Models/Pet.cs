@@ -34,23 +34,23 @@ namespace pet_hotel
   public class Pet
   {
     // EF knows this is primary serial key
-    public int Id { get; set; }
-    public string PetName { get; set; }
+    public int id { get; set; }
+    public string name { get; set; }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public PetBreedType BreedType { get; set; }
+    public PetBreedType breed { get; set; }
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public PetColorType ColorType { get; set; }
+    public PetColorType color { get; set; }
 
     [ForeignKey("OwnedBy")]
-    public int OwnedById { get; set; }
+    public int petOwnerid { get; set; }
     // PetOwner obj from the DB ( using joins )
-    public PetOwner OwnedBy { get; set; }
-    public DateTime CheckedInAt { get; set; }
+    public PetOwner petOwner { get; set; }
+    public DateTime checkedInAt { get; set; }
 
     // whenever new pet instance is created this constructor will get the current date & time
     public Pet()
     {
-      CheckedInAt = DateTime.Now;
+      checkedInAt = DateTime.Now;
     }
   }
 }

@@ -14,8 +14,8 @@ namespace pet_hotel.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ownerName = table.Column<string>(type: "text", nullable: false),
-                    email = table.Column<string>(type: "text", nullable: true),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    emailAddress = table.Column<string>(type: "text", nullable: true),
                     pets = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -27,29 +27,29 @@ namespace pet_hotel.Migrations
                 name: "Pets",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PetName = table.Column<string>(type: "text", nullable: true),
-                    BreedType = table.Column<int>(type: "integer", nullable: false),
-                    ColorType = table.Column<int>(type: "integer", nullable: false),
-                    OwnedById = table.Column<int>(type: "integer", nullable: false),
-                    CheckedInAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: true),
+                    breed = table.Column<int>(type: "integer", nullable: false),
+                    color = table.Column<int>(type: "integer", nullable: false),
+                    petOwnerid = table.Column<int>(type: "integer", nullable: false),
+                    checkedInAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pets", x => x.Id);
+                    table.PrimaryKey("PK_Pets", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Pets_PetOwners_OwnedById",
-                        column: x => x.OwnedById,
+                        name: "FK_Pets_PetOwners_petOwnerid",
+                        column: x => x.petOwnerid,
                         principalTable: "PetOwners",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pets_OwnedById",
+                name: "IX_Pets_petOwnerid",
                 table: "Pets",
-                column: "OwnedById");
+                column: "petOwnerid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

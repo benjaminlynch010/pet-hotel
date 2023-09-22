@@ -16,9 +16,9 @@ namespace pet_hotel
         // but also automatically sends back 400 errors 
         // if missing in the request body
         [Required]
-        public string ownerName { get; set; }
+        public string name { get; set; }
         
-        public string email { get; set; }
+        public string emailAddress { get; set; }
 
         public int pets {get; set;}
     }
