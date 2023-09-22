@@ -9,28 +9,28 @@ using Microsoft.Net.Http.Headers;
 namespace pet_hotel
 {
   // enum = list of const values
-  public enum PetBreedType 
+  public enum PetBreedType
   {
-    Husky, 
-    Shepherd, 
-    Poodle, 
-    Beagle, 
-    Bulldog, 
-    Terrier, 
-    Boxer, 
-    Labrador, 
-    Retriever 
+    Husky,
+    Shepherd,
+    Poodle,
+    Beagle,
+    Bulldog,
+    Terrier,
+    Boxer,
+    Labrador,
+    Retriever
   }
-  public enum PetColorType 
-  { 
-    White, 
-    Black, 
-    Golden, 
-    Tricolor, 
-    Spotted 
+  public enum PetColorType
+  {
+    White,
+    Black,
+    Golden,
+    Tricolor,
+    Spotted
   }
 
-  
+
   public class Pet
   {
     // EF knows this is primary serial key

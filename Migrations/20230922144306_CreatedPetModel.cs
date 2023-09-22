@@ -16,7 +16,7 @@ namespace pet_hotel.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
                     emailAddress = table.Column<string>(type: "text", nullable: true),
-                    pets = table.Column<int>(type: "integer", nullable: false)
+                    petCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

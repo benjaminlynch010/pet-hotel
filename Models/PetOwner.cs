@@ -20,6 +20,6 @@ namespace pet_hotel
         
         public string emailAddress { get; set; }
 
-        public int pets {get; set;}
+        public int petCount {get; set;}
     }
 }

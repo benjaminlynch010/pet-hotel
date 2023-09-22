@@ -62,7 +62,7 @@ namespace pet_hotel.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("pets")
+                    b.Property<int>("petCount")
                         .HasColumnType("integer");
 
                     b.HasKey("id");
