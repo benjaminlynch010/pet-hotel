@@ -24,7 +24,8 @@ namespace pet_hotel.Controllers
         [HttpGet]
         // .NET fancy way to say a list of pet objects
         public IEnumerable<Pet> GetPets() {
-            return new List<Pet>();
+            return _context.Pets
+            .Include(pet => pet.petOwner);
         }
 
         [HttpGet("{id}")]
